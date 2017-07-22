@@ -1,0 +1,66 @@
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+{{#if rows}}
+<table>
+  <tr>
+   {{#each fields}}
+	<th>{{this.name}}</th>
+	{{/each}}
+	<th>Add Stock</th>
+  </tr>
+  {{date}}
+  {{#each rows}}
+  <tr>
+    <td>{{this.mname}}</td>
+    <td>{{this.available}}</td>
+	<td>
+		<form method="POST" action="/add">
+			<input type="text" id="edate" name="edate" placeholder="dd.mm.yyyy > {{../date}}">
+			<input type="text" id="qty" name="qty" placeholder="Quantity">
+			<input type="" id="mname" name="mname" value="{{this.mname}}" style="display:none">
+			<button type="" class="btn btn-success">Add</button>
+		</form>
+	</td>
+  </tr>
+  {{/each}}
+</table>
+{{else}}
+please login to view this page
+{{/if}}
+<script>
+function cmp()
+{
+	var n=new date({{date}});
+	console.log('jubin');
+}
+$(document).ready(function(){
+console.log('jubin');
+    $("button").click(function(){
+        $.post("/add",
+        {
+          mname: document.getElementById('mname'),
+          qty: document.getElementById('qty'),
+		  edate: document.getElementById('edate')
+        },
+        function(data,status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+});
+
+

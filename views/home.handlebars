@@ -1,0 +1,38 @@
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+{{#if rows}}
+<table>
+  <tr>
+   {{#each fields}}
+	<th>{{this.name}}</th>
+	{{/each}}
+  </tr>
+  {{#each rows}}
+  <tr>
+    <td><a href="/available?name={{this.mname}}">{{this.mname}}</a></td>
+    <td><a href="/delstock?name={{this.mname}}">{{this.edate}}</a></td>
+    <td>{{this.sname}}</td>
+	<td>{{this.cname}}</td>
+	<td>{{this.price}}</td>
+	<td>{{this.profit}}</td>
+  </tr>
+  {{/each}}
+</table>
+{{else}}
+please login to view this page
+{{/if}}

@@ -1,0 +1,41 @@
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+{{#if rows}}
+<table>
+  <tr>
+   {{#each fields}}
+	<th>{{this.name}}</th>
+	{{/each}}
+	<th>Remove Stock?</th>
+  </tr>
+  {{#each rows}}
+  <tr>
+    <td>{{this.mname}}</td>
+    <td>{{this.available}}</td>
+	
+	<td>
+		<form method="POST" action="/delstock">
+			<button type="Submit" class="btn btn-danger" name="del" value="{{this.mname}}">Remove Stock</button>
+		</form>
+	</td>
+  </tr>
+  {{/each}}
+</table>
+{{else}}
+please login to view this page
+{{/if}}

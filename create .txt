@@ -1,0 +1,40 @@
+use pharmaceutical;
+create table company(
+    cid int,
+    cname varchar(20),
+    primary key(cid)
+    );
+create table category(
+    cat_id int,
+    cat_name varchar(20),
+    primary key(cat_id)
+    );
+CREATE TABLE supplier(
+    sid int,
+    sname varchar(20),
+    country varchar(20),
+    cid int,
+    region varchar(20),
+    PRIMARY key(sid),
+    foreign key(cid) references company(cid)
+    );
+  use pharmaceutical;
+CREATE TABLE medicine(
+    mname varchar(20),
+    edate varchar(15),
+    price int,
+    profit int,
+    sid int,
+    available int,
+    cat_id int,
+    primary key(mname),
+    foreign key(sid) references supplier(sid),
+    foreign key(cat_id) REFERENCES category(cat_id)
+    );  
+    
+create table users(
+	username varchar2(20),
+	email varchar2(20),
+	password varchar2(20),
+	primary key(username,password)
+	);
